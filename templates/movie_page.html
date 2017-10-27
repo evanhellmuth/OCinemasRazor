@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+	<h1>Movies</h1>
+
+	{% for movie in movies %}
+		<img src={{ url_for('static', filename=movie.image_loc) }} alt = "{{movie.title}}">
+		<p> {{ movie.title }}
+			{% if movie.year %}
+			({{ movie.year }})
+			{% endif %}
+		</p>
+	{% else %}
+		<p> Apparently, no movies have been reviewed yet. </p>
+	{% endfor %}
+
+	<a href={{ url_for('about') }}> About </a>
+
+</html>
