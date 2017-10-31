@@ -43,11 +43,11 @@ def initdb_command():
 
 @app.route('/index')
 @app.route('/')
-def movie_page():
+def movies():
 	db = get_db()
 	cur = db.execute('select title, image_loc, year, rating from movies order by id desc')
 	movies = cur.fetchall()
-	return render_template('movie_page.html', movies=movies)
+	return render_template('movies.html', movies=movies)
 
 @app.route('/about')
 def about():

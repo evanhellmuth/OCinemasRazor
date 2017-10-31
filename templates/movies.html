@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block body %}
+	{% for movie in movies %}
+		<div class="movie tooltip">
+			<img src={{ url_for('static', filename=movie.image_loc) }} alt = "{{movie.title}}">
+			<p>{{ movie.title }}
+				{% if movie.year -%}
+					({{ movie.year }})
+				{%- endif %}
+			</p>
+			{% if movie.rating -%}
+				<span class='tooltiptext good'>Good</span>
+			{%- else -%}
+				<span class='tooltiptext bad'>Bad</span>
+			{%- endif %}
+		</div>
+	{% else %}
+		<p>Apparently, no movies have been reviewed yet.</p>
+	{% endfor %}
+{% endblock %}
