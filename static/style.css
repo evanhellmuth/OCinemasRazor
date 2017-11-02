@@ -41,6 +41,10 @@ ul.navbar {
 	position: relative;
 }
 
+.movie img {
+	display: block;
+}
+
 .movie .movie-overlay {
 	visibility: hidden;
 	width: 100%;
