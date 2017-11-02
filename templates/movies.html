@@ -1,6 +1,8 @@
 {% extends 'layout.html' %}
 {% block body %}
+	<div class=movie-group>
 	{% for movie in movies %}
+		<div class='movie-container'>
 		<div class='movie'>
 			<img src={{ url_for('static', filename=movie.image_loc) }} alt = '{{movie.title}}'>
 			<div class='movie-overlay'>
@@ -16,7 +18,9 @@
 				{%- endif %}
 			</div>
 		</div>
+		</div>
 	{% else %}
 		<p>Apparently, no movies have been reviewed yet.</p>
 	{% endfor %}
+	</div>
 {% endblock %}

@@ -1,6 +1,7 @@
 body {
 	font-size: 100%;
 	font-family: Arial, Helvetica, sans-serif;
+	background: #eee;
 }
 
 /* nav bar style */
@@ -9,7 +10,7 @@ ul.navbar {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-	background-color: #f3f3f3;
+	background-color: #e3e3e3;
 }
 
 .navbar li {
@@ -28,18 +29,18 @@ ul.navbar {
 	background-color: #ddd;
 }
 
-.movie { 
+.movie-container {
 	display: inline-block;
 	margin: 0.5em;
+}
+
+.movie { 
+	display: inline-block;
+	border: 0.5em solid #fff;
 
 	position: relative;
 }
 
-.movie img {
-	display: block;
-}
-
-/* tooltip text */
 .movie .movie-overlay {
 	visibility: hidden;
 	width: 100%;
@@ -49,16 +50,35 @@ ul.navbar {
 	color: white;
 	text-align: center;
 
-	/* position the tooltip */
 	position: absolute;
 	z-index: 1;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	top: 0;
+	left 0;
 }
 
-.movie:hover .movie-overlay {
+.movie-container:hover .movie {
+	box-shadow: 0.2em 0.3em 0.5em 0.2em rgba(0,0,0,0.3);
+	animation: flip 0.3s linear;
+}
+
+.movie-container:hover .movie-overlay {
+	animation: flip-vis 0.3s linear;
 	visibility: visible;
+}
+
+/* animation for flipping poster */
+@keyframes flip {
+	0%	{transform:rotateY(0deg);}
+	50%	{transform:rotateY(90deg);}
+	100%	{transform:rotateY(0deg);}
+}
+
+/* animation for making text appear at the right time
+	paired with flip */
+@keyframes flip-vis {
+	0%	{visibility: hidden;}
+	50%	{visibility: hidden;}
+	100%	{visibility: visible;}
 }
 
 .movie-info {
