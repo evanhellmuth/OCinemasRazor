@@ -4,6 +4,27 @@ body {
 	background: #eee;
 }
 
+/* table style */
+table {
+	border-collapse: collapse;
+	margin: 1em;
+}
+
+td, th {
+	border: 1px solid lightgrey;
+	text-align: left;
+	padding: 0.5em;
+}
+
+tr:nth-child(even) {
+	background-color: lightgrey;
+}
+
+form {
+	display: inline-block;
+	margin: 1em;
+}
+
 /* nav bar style */
 ul.navbar {
 	list-style-type: none;
@@ -29,6 +50,11 @@ ul.navbar {
 	background-color: #ddd;
 }
 
+.movie-group {
+	text-align: center;
+	padding: 0 20px;
+}
+
 .movie-container {
 	display: inline-block;
 	position: relative;
@@ -47,6 +73,8 @@ ul.navbar {
 
 .movie img {
 	display: block; /* prevents extra pixels at bottom */
+	width: 182px;
+	height: 268px;
 }
 
 .movie-overlay {
@@ -56,6 +84,7 @@ ul.navbar {
 	background: rgba(0,0,0,0.8);
 	color: white;
 	text-align: center;
+	overflow: hidden;
 
 	position: absolute;
 	z-index: 1;

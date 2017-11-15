@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+{% block body %}
+<form method=post autocomplete=off>
+	<fieldset>
+	<legend>Load from IMDb page:</legend>
+	<dl>
+		<dt>IMDb URL:
+		<dd><input type=text name=imdb_url size=40>
+		<dd><input type=submit value=Submit>
+	</dl>
+	</fieldset>
+</form>
+<br>
+<form action='{{ url_for('add_movie') }}' method=post autocomplete=off>
+	<fieldset>
+	<legend>Add a new entry</legend>
+	<dl>
+		<dt>Title:
+		<dd><input type=text name=title value='{{ movie_info.title }}' required>
+		<dt>Year:
+		<dd><input type=text name=year value='{{ movie_info.year }}'>
+		<dt>Poster URL:
+		<dd><input type=text name=poster_url value='{{ movie_info.poster_url }}'>
+		<dd><img src='{{ movie_info.poster_url }}'>
+		<dt>Rating:
+		<dd><input type=radio name=rating value=1 required>Good
+		<dd><input type=radio name=rating value=0 required>Bad
+		<dd><input type=submit value=Submit>
+	</dl>
+	</fieldset>
+</form>
+{% with messages = get_flashed_messages() %}
+	{% if messages %}
+		<ul class=flashes>
+		{% for message in messages %}
+			<li>{{ message }}</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+{% endwith %}
+{% endblock %}

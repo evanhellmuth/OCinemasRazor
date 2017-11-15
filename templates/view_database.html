@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block body %}
+<table>
+	<caption>movies</caption>
+	<tr>
+		<th>id</th>
+		<th>title</th>
+		<th>year</th>
+		<th>image_loc</th>
+		<th>rating</th>
+	{% for row in movie_db %}
+	<tr>
+		<td>{{ row.id }}</td>
+		<td>{{ row.title }}</td>
+		<td>{{ row.year }}</td>
+		<td>{{ row.image_loc }}</td>
+		<td>{{ row.rating }}</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}

@@ -4,7 +4,7 @@
 	{% for movie in movies %}
 		<div class='movie-container'>
 		<div class='movie'>
-			<img src={{ url_for('static', filename=movie.image_loc) }} alt = '{{movie.title}}'>
+			<img src='{{ url_for('static', filename='movie_posters/'+movie.image_loc) }}' alt = '{{movie.title}}'>
 			<div class='movie-overlay'>
 				<p class='movie-info'>{{ movie.title }}
 					{% if movie.year -%}
@@ -23,5 +23,4 @@
 		<p>Apparently, no movies have been reviewed yet.</p>
 	{% endfor %}
 	</div>
-	<div class=box></div>
 {% endblock %}
