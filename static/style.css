@@ -73,7 +73,7 @@ ul.navbar {
 
 .movie img {
 	display: block; /* prevents extra pixels at bottom */
-	width: 182px;
+	width: 182px; /* height and width of imdb images */
 	height: 268px;
 }
 
@@ -97,6 +97,7 @@ ul.navbar {
 }
 
 .movie-container::after {
+	/* shadow */
 	content: '';
 	position: absolute;
 	z-index: -1;
@@ -126,21 +127,39 @@ ul.navbar {
 }
 
 .movie-info {
-	font-size: 2rem;
+	text-align: left;
+	font-size: 1.5rem;
 	overflow: hidden;
 	padding: 1rem;
 }
 
-.good, .bad {
-	border-radius: 0.5em;
-	width: 60%;
-	padding: 1rem;
+.title {
+	text-align: left;
+}
 
+.year {
+	display: block;
+	text-align: right;
+	font-size: 0.7em;
+}
+
+.rating-container {
+	width: 5em; /* circle size */
+	height: 5em;
 	position: absolute;
 	left: 50%;
-	bottom: 0%;
+	bottom: 1em;
 	-webkit-transform: translate(-50%, 0);
 	transform: translate(-50%, 0);
+}
+
+.rating {
+	display: table-cell;
+	width: 5em; /* circle size */
+	height: 5em;
+	text-align: center;
+	vertical-align: middle;
+	border-radius: 50%;
 }
 
 .good {

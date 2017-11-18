@@ -92,7 +92,7 @@ def add_movie():
 	if request.form['poster_url']:
 		poster_filename = '_'.join(request.form['title'].lower().split())
 		poster_filename = poster_filename + '.jpg'
-		scraper.download_image(request.form['poster_url'], 'static/'+poster_filename)
+		scraper.download_image(request.form['poster_url'], 'static/movie_posters/'+poster_filename)
 
 	db = get_db()
 	db.execute('insert into movies (title, year, image_loc, rating) values (?, ?, ?, ?)',

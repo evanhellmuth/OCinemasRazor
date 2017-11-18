@@ -16,20 +16,24 @@ def good_imdb_url(url):
 
 def movie_info_from_soup(soup):
 	""" gets the movie title, year, and poster url from a BS object
-		return as a dict """
-	info = soup.find('h1', itemprop='name')
-	title = info.contents[0].strip()
-	year = int(info.find(id='titleYear').a.text)
-	poster_div = soup.find(class_='poster')
-	poster_url = poster_div.find('img')['src']
-	movie_info = {'title':title,
-			'year':year,
-			'poster_url':poster_url}
-	return movie_info
+		return as a dict. Returns None if info unobtainable """
+	try:
+		info = soup.find('h1', itemprop='name')
+		title = info.contents[0].strip()
+		year = int(info.find(id='titleYear').a.text)
+		poster_div = soup.find(class_='poster')
+		poster_url = poster_div.find('img')['src']
+		movie_info = {'title':title,
+				'year':year,
+				'poster_url':poster_url}
+		return movie_info
+	except AttributeError:
+		# info not found on page for some reason
+		return None
 
 def movie_info_from_url(url):
 	""" check if url is appropriate. if yes, scrape title, year, poster url,
-		return as a dict """
+		return as a dict. Returns None if info unobtainable """
 	if not good_imdb_url(url):
 		return None
 	soup = load_page(url)

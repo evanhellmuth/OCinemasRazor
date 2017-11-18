@@ -6,16 +6,19 @@
 		<div class='movie'>
 			<img src='{{ url_for('static', filename='movie_posters/'+movie.image_loc) }}' alt = '{{movie.title}}'>
 			<div class='movie-overlay'>
-				<p class='movie-info'>{{ movie.title }}
+				<div class='movie-info'>
+					<span class='title'>{{ movie.title }}</span>
 					{% if movie.year -%}
-						({{ movie.year }})
+					<span class='year'>({{ movie.year }})</span>
 					{%- endif -%}
-				</p>
+				</div>
+				<div class='rating-container'>
 				{% if movie.rating -%}
-					<p class='good'>Good</p>
+					<span class='rating good'>Good</span>
 				{%- else -%}
-					<p class='bad'>Bad</p>
+					<span class='rating bad'>Bad</span>
 				{%- endif %}
+				</div>
 			</div>
 		</div>
 		</div>
