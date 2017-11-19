@@ -13,11 +13,14 @@
 					{%- endif -%}
 				</div>
 				<div class='rating-container'>
-				{% if movie.rating -%}
-					<span class='rating good'>Good</span>
-				{%- else -%}
-					<span class='rating bad'>Bad</span>
-				{%- endif %}
+					<span class='fa-stack fa-3x'>
+						<i class='fa fa-circle fa-stack-2x'></i>
+					{% if movie.rating -%}
+						<i class='fa fa-check fa-stack-1x good'></i>
+					{%- else -%}
+						<i class='fa fa-times fa-stack-1x bad'></i>
+					{%- endif %}
+					</span>
 				</div>
 			</div>
 		</div>

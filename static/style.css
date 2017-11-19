@@ -144,8 +144,6 @@ ul.navbar {
 }
 
 .rating-container {
-	width: 5em; /* circle size */
-	height: 5em;
 	position: absolute;
 	left: 50%;
 	bottom: 1em;
@@ -153,19 +151,10 @@ ul.navbar {
 	transform: translate(-50%, 0);
 }
 
-.rating {
-	display: table-cell;
-	width: 5em; /* circle size */
-	height: 5em;
-	text-align: center;
-	vertical-align: middle;
-	border-radius: 50%;
-}
-
 .good {
-	background-color: #2d862d;
+	color: #2d862d;
 }
 
 .bad {
-	background-color: #ff4d4d;
+	color: #ff4d4d;
 }
