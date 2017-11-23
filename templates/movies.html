@@ -14,11 +14,12 @@
 				</div>
 				<div class='rating-container'>
 					<span class='fa-stack fa-3x'>
-						<i class='fa fa-circle fa-stack-2x'></i>
 					{% if movie.rating -%}
-						<i class='fa fa-check fa-stack-1x good'></i>
+						<i class='fa fa-circle fa-stack-2x good'></i>
+						<i class='fa fa-check-circle fa-stack-2x'></i>
 					{%- else -%}
-						<i class='fa fa-times fa-stack-1x bad'></i>
+						<i class='fa fa-circle fa-stack-2x bad'></i>
+						<i class='fa fa-times-circle fa-stack-2x'></i>
 					{%- endif %}
 					</span>
 				</div>
