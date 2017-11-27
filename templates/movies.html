@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 {% block body %}
-	<div class=movie-group>
+	<div class='movie-group'>
 	{% for movie in movies %}
 		<div class='movie-container'>
 		<div class='movie'>
@@ -13,11 +13,15 @@
 					{%- endif -%}
 				</div>
 				<div class='rating-container'>
-				{% if movie.rating -%}
-					<span class='rating good'>Good</span>
-				{%- else -%}
-					<span class='rating bad'>Bad</span>
-				{%- endif %}
+					<span class='fa-stack fa-3x'>
+					{% if movie.rating -%}
+						<i class='fa fa-circle fa-stack-2x good'></i>
+						<i class='fa fa-check-circle fa-stack-2x'></i>
+					{%- else -%}
+						<i class='fa fa-circle fa-stack-2x bad'></i>
+						<i class='fa fa-times-circle fa-stack-2x'></i>
+					{%- endif %}
+					</span>
 				</div>
 			</div>
 		</div>

@@ -26,7 +26,7 @@ form {
 }
 
 /* nav bar style */
-ul.navbar {
+.navbar {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
@@ -42,12 +42,20 @@ ul.navbar {
 	display: block;
 	color: #666;
 	text-align: center;
-	text-decoration: none;
 	padding: 0.8em 1em;
+	text-decoration: none;
 }
 
 .navbar li a:hover {
 	background-color: #ddd;
+}
+
+.navbar .logout-btn {
+	float: right;
+}
+
+.navbar .logout-btn a {
+	color: #33adff;
 }
 
 .movie-group {
@@ -144,8 +152,6 @@ ul.navbar {
 }
 
 .rating-container {
-	width: 5em; /* circle size */
-	height: 5em;
 	position: absolute;
 	left: 50%;
 	bottom: 1em;
@@ -153,19 +159,10 @@ ul.navbar {
 	transform: translate(-50%, 0);
 }
 
-.rating {
-	display: table-cell;
-	width: 5em; /* circle size */
-	height: 5em;
-	text-align: center;
-	vertical-align: middle;
-	border-radius: 50%;
-}
-
 .good {
-	background-color: #2d862d;
+	color: #2d862d;
 }
 
 .bad {
-	background-color: #ff4d4d;
+	color: #ff4d4d;
 }
