@@ -72,6 +72,12 @@ def login():
 		return redirect(url_for('admin'))
 	return render_template('admin_login.html', error=error)
 
+@app.route('/logout')
+def logout():
+	session.pop('logged_in', None)
+	flash('You were logged out')
+	return redirect(url_for('movies'))
+
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
 	if not session.get('logged_in'):
