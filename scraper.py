@@ -23,8 +23,20 @@ def movie_info_from_soup(soup):
 		year = int(info.find(id='titleYear').a.text)
 		poster_div = soup.find(class_='poster')
 		poster_url = poster_div.find('img')['src']
+
+		credits = soup.find(class_='plot_summary')
+		directors = credits.find_all(itemprop='director')
+		writers = credits.find_all(itemprop='creator')
+		actors = credits.find_all(itemprop='actors')
+		directors, writers, actors = \
+			([div.find(itemprop='name').contents[0] for div in credit_section] \
+				for credit_section in (directors, writers, actors))
+
 		movie_info = {'title':title,
 				'year':year,
+				'directors':directors,
+				'writers':writers,
+				'actors':actors,
 				'poster_url':poster_url}
 		return movie_info
 	except AttributeError:

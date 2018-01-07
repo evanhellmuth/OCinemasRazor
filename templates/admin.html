@@ -19,6 +19,40 @@
 		<dd><input type=text name=title value='{{ movie_info.title }}' required>
 		<dt>Year:
 		<dd><input type=text name=year value='{{ movie_info.year }}'>
+
+		{% if movie_info and  movie_info.directors|length > 1 %}
+		<dt>Directors:
+		{% else %}
+		<dt>Director:
+		{% endif %}
+		{% for director in movie_info.directors %}
+		<dd><input type=text name=director value='{{ director }}'>
+		{% else %}
+		<dd><input type=text name=director value=''>
+		{% endfor %}
+
+		{% if movie_info and  movie_info.writers|length > 1 %}
+		<dt>Writers:
+		{% else %}
+		<dt>Writer:
+		{% endif %}
+		{% for writer in movie_info.writers %}
+		<dd><input type=text name=writer value='{{ writer }}'>
+		{% else %}
+		<dd><input type=text name=writer value=''>
+		{% endfor %}
+
+		{% if movie_info and  movie_info.actors|length > 1 %}
+		<dt>Actors:
+		{% else %}
+		<dt>Actor:
+		{% endif %}
+		{% for actor in movie_info.actors %}
+		<dd><input type=text name=actor value='{{ actor }}'>
+		{% else %}
+		<dd><input type=text name=actor value=''>
+		{% endfor %}
+
 		<dt>Poster URL:
 		<dd><input type=text name=poster_url value='{{ movie_info.poster_url }}'>
 		<dd><img src='{{ movie_info.poster_url }}'>

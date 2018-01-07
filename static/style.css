@@ -136,27 +136,41 @@ form {
 
 .movie-info {
 	text-align: left;
-	font-size: 1.5rem;
+	font-size: 1rem;
 	overflow: hidden;
 	padding: 1rem;
 }
 
 .title {
+	display: block;
+	text-align: center;
+	font-size: 1.5em;
+	margin: 1em 0em;
+}
+
+.credit-block {
+	display: block;
 	text-align: left;
 }
 
+.credit {
+	font-size: 0.9em;
+}
+
+.bottom-info {
+}
+
 .year {
-	display: block;
-	text-align: right;
-	font-size: 0.7em;
+	position: absolute;
+	left: 1.3rem;
+	bottom: 2rem;
+	font-size: 1.5em;
 }
 
 .rating-container {
 	position: absolute;
-	left: 50%;
-	bottom: 1em;
-	-webkit-transform: translate(-50%, 0);
-	transform: translate(-50%, 0);
+	right: 1rem;
+	bottom: 1rem;
 }
 
 .good {

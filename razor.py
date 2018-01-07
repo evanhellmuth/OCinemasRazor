@@ -24,15 +24,15 @@ def connect_db():
 def get_db():
 	""" Opens a new database connection if there is
 	none yet for the current application context """
-	if not hasattr(g, 'movies_db'):
-		g.movies_db = connect_db()
-	return g.movies_db
+	if not hasattr(g, 'razor_db'):
+		g.razor_db = connect_db()
+	return g.razor_db
 
 @app.teardown_appcontext
 def close_db(error):
 	""" Closes the database again at the end of the request """
-	if hasattr(g, 'movies_db'):
-		g.movies_db.close()
+	if hasattr(g, 'razor_db'):
+		g.razor_db.close()
 
 def init_db():
 	""" Initialize the database """
@@ -51,9 +51,19 @@ def initdb_command():
 @app.route('/')
 def movies():
 	db = get_db()
-	cur = db.execute('select title, image_loc, year, rating from movies order by id desc')
+	cur = db.execute('select id, title, year, image_loc, rating from movies order by id desc')
 	movies = cur.fetchall()
-	return render_template('movies.html', movies=movies)
+	cur = db.execute('select * from directors')
+	directors = cur.fetchall()
+	cur = db.execute('select * from writers')
+	writers = cur.fetchall()
+	cur = db.execute('select * from actors')
+	actors = cur.fetchall()
+	return render_template('movies.html',
+			movies=movies,
+			directors=directors,
+			writers=writers,
+			actors=actors)
 
 @app.route('/about')
 def about():
@@ -75,7 +85,7 @@ def login():
 @app.route('/logout')
 def logout():
 	session.pop('logged_in', None)
-	flash('You were logged out')
+	#flash('You were logged out')
 	return redirect(url_for('movies'))
 
 @app.route('/admin', methods=['GET', 'POST'])
@@ -101,11 +111,28 @@ def add_movie():
 		scraper.download_image(request.form['poster_url'], 'static/movie_posters/'+poster_filename)
 
 	db = get_db()
-	db.execute('insert into movies (title, year, image_loc, rating) values (?, ?, ?, ?)',
+	# add basic movie info to database
+	cur = db.execute('insert into movies (title, year, image_loc, image_url, rating) values (?, ?, ?, ?, ?)',
 			[request.form['title'],
 			request.form['year'],
 			poster_filename,
+			request.form['poster_url'],
 			request.form['rating']])
+	movie_id = cur.lastrowid # gives id of the movie
+
+	# add directors, writers, actors to database
+	for director in request.form.getlist('director'):
+		db.execute('insert into directors (name, movie_id) values (?, ?)',
+				[director,
+				movie_id])
+	for writer in request.form.getlist('writer'):
+		db.execute('insert into writers (name, movie_id) values (?, ?)',
+				[writer,
+				movie_id])
+	for actor in request.form.getlist('actor'):
+		db.execute('insert into actors (name, movie_id) values (?, ?)',
+				[actor,
+				movie_id])
 	db.commit()
 	flash('Added ' + request.form['title'] + ' to database')
 	return redirect(url_for('admin'))
@@ -116,5 +143,5 @@ def view_database():
 		abort(401)
 	db = get_db()
 	cur = db.execute('select * from movies')
-	movie_db = cur.fetchall()
-	return render_template('view_database.html', movie_db=movie_db)
+	movies = cur.fetchall()
+	return render_template('view_database.html', movies=movies)
