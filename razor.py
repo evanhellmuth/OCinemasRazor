@@ -97,7 +97,7 @@ def add_movie():
 	poster_filename=''
 	if request.form['poster_url']:
 		poster_filename = '_'.join(request.form['title'].lower().split())
-		poster_filename = poster_filename + '.jpg'
+		poster_filename = poster_filename + request.form['year'] + '.jpg'
 		scraper.download_image(request.form['poster_url'], 'static/movie_posters/'+poster_filename)
 
 	db = get_db()
