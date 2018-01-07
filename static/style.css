@@ -1,7 +1,8 @@
 body {
 	font-size: 100%;
 	font-family: Arial, Helvetica, sans-serif;
-	background: #eee;
+	color: #d4d4dc;
+	background: #1d1e22;
 }
 
 /* table style */
@@ -11,13 +12,18 @@ table {
 }
 
 td, th {
-	border: 1px solid lightgrey;
+	border: 1px solid #d4d4dc;
 	text-align: left;
 	padding: 0.5em;
 }
 
+tr:nth-child(odd) {
+	color: #d4d4dc;
+}
+
 tr:nth-child(even) {
-	background-color: lightgrey;
+	background-color: #d4d4dc;
+	color: #393f4d;
 }
 
 form {
@@ -31,7 +37,7 @@ form {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-	background-color: #e3e3e3;
+	background-color: #393f4d;
 }
 
 .navbar li {
@@ -40,14 +46,15 @@ form {
 
 .navbar li a {
 	display: block;
-	color: #666;
+	color: #d4d4dc;
 	text-align: center;
 	padding: 0.8em 1em;
 	text-decoration: none;
 }
 
 .navbar li a:hover {
-	background-color: #ddd;
+	background-color: #feda6a;
+	color: #393f4d;
 }
 
 .navbar .logout-btn {
@@ -60,7 +67,7 @@ form {
 
 .movie-group {
 	text-align: center;
-	padding: 0 20px;
+	padding: 10px 20px;
 }
 
 .movie-container {
@@ -75,7 +82,7 @@ form {
 
 .movie { 
 	display: block; /* prevent extra pixels at bottom */
-	border: 0.5em solid #fff;
+	border: 0.5em solid #d4d4dc;
 	position: relative;
 }
 
