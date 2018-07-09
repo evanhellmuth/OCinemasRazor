@@ -2,60 +2,37 @@
 {% block body %}
 	<div class='movie-group'>
 	{% for movie in movies %}
-		<div class='movie-container'>
+		<div class='movie-spot'>
+		<div class='movie-container' onclick='seeDetails(this)'>
 		<div class='movie'>
 			<img src='{{ url_for('static', filename='movie_posters/'+movie.image_loc) }}' alt = '{{movie.title}}'>
 			<div class='movie-overlay'>
-				<div class='movie-info'>
-					<span class='title'>{{ movie.title }}</span>
-					{#
-						<div class='credit-block'>
-						Directors:
-						{% for director in directors %}
-							{% if director.movie_id == movie.id %}
-							<span class='credit'>{{ director.name }}</span>
-							{% endif %}
-						{% endfor %}
-						</div>
-						<div class='credit-block'>
-						Writers:
-						{% for writer in writers %}
-							{% if writer.movie_id == movie.id %}
-							<span class='credit'>{{ writer.name }}</span>
-							{% endif %}
-						{% endfor %}
-						</div>
-						<div class='credit-block'>
-						Actors:
-						{% for actor in actors %}
-							{% if actor.movie_id == movie.id %}
-							<span class='credit'>{{ actor.name }}</span>
-							{% endif %}
-						{% endfor %}
-						</div>
-					#}
-				</div>
-				<div class='bottom-info'>
-					{% if movie.year -%}
-						<span class='year'>{{ movie.year }}</span>
-					{%- endif -%}
-					<div class='rating-container'>
-						<span class='fa-stack fa-2x'>
-						{% if movie.rating -%}
-							<i class='fa fa-circle fa-stack-2x good'></i>
-							<i class='fa fa-check-circle fa-stack-2x'></i>
-						{%- else -%}
-							<i class='fa fa-circle fa-stack-2x bad'></i>
-							<i class='fa fa-times-circle fa-stack-2x'></i>
-						{%- endif %}
-						</span>
-					</div>
+				<span class='title'>{{ movie.title }}</span>
+				{% if movie.year -%}
+					<span class='year'>{{ movie.year }}</span>
+				{%- endif -%}
+				<div class='rating-container'>
+					<span class='fa-stack fa-2x'>
+					{% if movie.rating -%}
+						<i class='fa fa-circle fa-stack-2x good'></i>
+						<i class='fa fa-check-circle fa-stack-2x'></i>
+					{%- else -%}
+						<i class='fa fa-circle fa-stack-2x bad'></i>
+						<i class='fa fa-times-circle fa-stack-2x'></i>
+					{%- endif %}
+					</span>
 				</div>
 			</div>
+			<div class='movie-full-details'>
+				<p>Director 1</p>
+				<p>Writer 2</p>
+			</div>
+		</div>
 		</div>
 		</div>
 	{% else %}
 		<p>Apparently, no movies have been reviewed yet.</p>
 	{% endfor %}
+	<div id='movie-expanded' onclick='setInvisible(this)'></div>
 	</div>
 {% endblock %}

@@ -1,22 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Film Razor</title>
-<link rel='stylesheet' type='text/css' href={{ url_for('static', filename='style.css') }}>
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+	<title>Film Razor</title>
+	<link rel='stylesheet' type='text/css' href={{ url_for('static', filename='style.css') }}>
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,600" rel="stylesheet">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src={{ url_for('static', filename='razor.js') }}></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-<div class='page'>
-	<h1>Film Razor</h1>
-	<ul class='navbar'>
-		<li><a href={{ url_for('movies') }}>Main</a></li>
-		<li><a href={{ url_for('about') }}>About</a></li>
-		{% if session.logged_in %}
-		<li class='logout-btn'><a href={{ url_for('logout') }}>Log Out</a></li>
-		{% endif %}
-	</ul>
-	{% block body %}{% endblock %}
-</div>
+	<header>
+		<div class='titles'>
+			<h1 class='main-title'><a href={{ url_for('movies') }}><span class='thin'>Film</span><span class='thick'>Razor</span></a></h1>
+			<span class='subtitle'>Cut the fluff out of movie choices</span>
+		</div>
+		<div class='menu-btn'>
+			<i class='fa fa-bars fa-2x'></i>
+		</div>
+		<span class='divider-line'></span>
+		<ul class='navbar'>
+			<li><a href={{ url_for('movies') }}>Movies</a></li>
+			<li><a href={{ url_for('about') }}>About</a></li>
+			{% if session.logged_in %}
+			<li class='logout-btn'><a href={{ url_for('logout') }}>Log Out</a></li>
+			{% endif %}
+		</ul>
+	</header>
+	<div class='main-content'>
+		<div class='overlay'></div>
+		{% block body %}{% endblock %}
+	</div>
 </body>
 </html>
